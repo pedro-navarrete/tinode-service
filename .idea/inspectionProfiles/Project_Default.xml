@@ -1,0 +1,41 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <list>
+          <option value="autocommand" />
+          <option value="backports.tarfile" />
+          <option value="importlib-metadata" />
+          <option value="inflect" />
+          <option value="jaraco.collections" />
+          <option value="jaraco.context" />
+          <option value="jaraco.functools" />
+          <option value="jaraco.text" />
+          <option value="more-itertools" />
+          <option value="platformdirs" />
+          <option value="tomli" />
+          <option value="typeguard" />
+          <option value="zipp" />
+          <option value="uvicorn" />
+          <option value="livekit-api" />
+          <option value="livekit-protocol" />
+          <option value="pymongo" />
+          <option value="motor" />
+          <option value="python-multipart" />
+          <option value="python-json-logger" />
+          <option value="gunicorn" />
+          <option value="minio" />
+          <option value="Pillow" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyStubPackagesCompatibilityInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredStubPackages">
+        <list>
+          <option value="scipy-stubs~=1.16.3" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
