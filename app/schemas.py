@@ -31,9 +31,30 @@ class MemberAdd(BaseModel):
     user_id: str
     mode: str = "JRWPS"        # ver permisos Tinode
 
+class MemberOut(BaseModel):
+    user_id: str
+    topic: Optional[str] = None
+    mode: Optional[str] = None
+
 class MessageSend(BaseModel):
     topic: str                 # userXXX o grpXXX
     content: str
+
+class MessageOut(BaseModel):
+    seq: Optional[int] = None
+    from_user: Optional[str] = None
+    ts: Optional[str] = None
+    content: Optional[str] = None
+
+    model_config = {"populate_by_name": True}
+
+class UserSearchOut(BaseModel):
+    user_id: Optional[str] = None
+    topic: Optional[str] = None
+    mode: Optional[str] = None
+
+class MeOut(BaseModel):
+    user_id: Optional[str] = None
 
 class TopicOut(BaseModel):
     topic: str

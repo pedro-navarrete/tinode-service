@@ -30,7 +30,7 @@ services:
       mysql:
         condition: service_healthy
     environment:
-      RESET_DB: "true"          # ⚠️ SOLO la primera vez
+      RESET_DB: "false"
       UPGRADE_DB: "true"
       WAIT_FOR: "mysql:3306"
       MYSQL_DSN: "root:${MYSQL_ROOT_PASSWORD}@tcp(mysql:3306)/tinode?parseTime=true&collation=utf8mb4_unicode_ci"
@@ -44,18 +44,24 @@ services:
       - tinode_uploads:/opt/tinode/uploads
     networks:
       - tinode-net
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:6060/"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
 
   tinode-api:
-    build: ./tinode-api
+    build: .
     container_name: tinode-api
     restart: unless-stopped
     depends_on:
-      - tinode
+      tinode:
+        condition: service_healthy
     environment:
       TINODE_GRPC_HOST: "tinode:16060"
-      TINODE_API_KEY: "${AUTH_TOKEN_KEY}"   # o tu apikey real
-      ADMIN_USER: "pnavarret"
-      ADMIN_PASSWORD: "tu_password_admin"
+      TINODE_API_KEY: "${TINODE_API_KEY}"
+      ADMIN_USER: "${ADMIN_USER}"
+      ADMIN_PASSWORD: "${ADMIN_PASSWORD}"
       APP_NAME: "TinodeAdminAPI/1.0"
     ports:
       - "8000:8000"
